@@ -6,8 +6,8 @@
 //  Copyright © 2017 Clumpy Tuna. All rights reserved.
 //
 
-#ifndef Vertex_h
-#define Vertex_h
+#ifndef Vertex_hpp
+#define Vertex_hpp
 
 #include "Edge.hpp"
 class Vertex {
@@ -28,4 +28,4 @@ private:
   size_t degree;
 };
 
-#endif /* Vertex_h */
+#endif /* Vertex_hpp */

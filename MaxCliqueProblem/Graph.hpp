@@ -6,8 +6,8 @@
 //  Copyright © 2017 Clumpy Tuna. All rights reserved.
 //
 
-#ifndef Graph_h
-#define Graph_h
+#ifndef Graph_hpp
+#define Graph_hpp
 
 #include "Edge.hpp"
 #include "Vertex.hpp"
@@ -105,4 +105,4 @@ long Graph::GetSize() const
 }
 
 
-#endif /* Graph_h */
+#endif /* Graph_hpp */

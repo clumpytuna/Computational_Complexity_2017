@@ -6,29 +6,26 @@
 //  Copyright © 2017 Clumpy Tuna. All rights reserved.
 //
 
-#ifndef Edge_h
-#define Edge_h
 
-#include <iostream>
-#include "Graph.hpp"
-#include "Vertex.hpp"
-
-class MaxCliqueSolver {
+#ifndef Edge_hpp
+#define Edge_hpp
+class Edge
+{
 public:
-  size_t FindClique(Graph &graph);
+  Edge(int from, int to, double data) : from(from), to(to), data(data) {}
+  ~Edge(){};
+  int from;
+  int to;
+  double data;
+  Edge *GetReverse();
+  const bool operator<(const Edge& rv) const {
+    return this->data < rv.data;
+  }
 };
 
-size_t MaxCliqueSolver::FindClique(Graph &graph) {
-  auto m = graph.GetMaxDegree();
-  auto lb = 0;
-  auto ub = m;
-  return 0;
+Edge *Edge::GetReverse()
+{
+  return new Edge(this->to, this->from, this->data);
 }
 
-int main(int argc, const char * argv[]) {
-  // insert code here...
-  std::cout << "Hello, World!\n";
-  return 0;
-}
-
-#endif /* Edge_h */
+#endif /* Edge_hpp */
