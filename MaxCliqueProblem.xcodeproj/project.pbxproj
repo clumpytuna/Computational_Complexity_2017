@@ -25,6 +25,9 @@
 /* Begin PBXFileReference section */
 		9C1E27BB1FE5DD8100226759 /* MaxCliqueProblem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MaxCliqueProblem; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1E27BE1FE5DD8100226759 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9C1E27C91FE5DE4A00226759 /* Graph.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = Graph.hpp; sourceTree = "<group>"; };
+		9C1E27CA1FE5DE5700226759 /* Vertex.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
+		9C1E27CB1FE5DE7B00226759 /* Edge.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = Edge.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,9 @@
 			isa = PBXGroup;
 			children = (
 				9C1E27BE1FE5DD8100226759 /* main.cpp */,
+				9C1E27C91FE5DE4A00226759 /* Graph.hpp */,
+				9C1E27CA1FE5DE5700226759 /* Vertex.hpp */,
+				9C1E27CB1FE5DE7B00226759 /* Edge.hpp */,
 			);
 			path = MaxCliqueProblem;
 			sourceTree = "<group>";
