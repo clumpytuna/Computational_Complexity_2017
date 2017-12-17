@@ -20,9 +20,9 @@ public:
   ~MaxCliqueSolver() {};
   size_t FindClique();
   void SetGraph(Graph graph);
-  
 private:
   Graph graph_;
+  bool Select();
   
 };
 

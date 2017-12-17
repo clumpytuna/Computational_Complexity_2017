@@ -1,21 +1,21 @@
 //
-//  main.cpp
+//  Subsetter.h
 //  MaxCliqueProblem
 //
-//  Created by Clumpy Tuna on 17.12.2017.
+//  Created by Clumpy Tuna on 18.12.2017.
 //  Copyright © 2017 Clumpy Tuna. All rights reserved.
 //
 
-#include <iostream>
-#include <stdio.h>
+#ifndef Subsetter_hpp
+#define Subsetter_hpp
+
 #include "Graph.hpp"
 #include "Vertex.hpp"
-#include "MaxCliqueProblemSolver.hpp"
 class Subsetter {
 public:
   Subsetter(std::vector<Vertex>& vertices, size_t cardinality)
-      : vertices_(vertices), cardinality_(cardinality),
-        marker(vertices.size(), 0) {
+  : vertices_(vertices), cardinality_(cardinality),
+  marker(vertices.size(), 0) {
   }
   
   bool GetNextSubset(std::set<Vertex>& vertices) {
@@ -68,9 +68,4 @@ public:
   size_t left_bound = 0;
 };
 
-
-int main(int argc, const char * argv[]) {
-
-}
-
-
+#endif /* Subsetter_hpp */

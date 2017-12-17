@@ -15,9 +15,7 @@
 #include <set>
 #include <vector>
 
-
 class Graph {
-  
 public:
   Graph(long number_of_vertices);
   Graph(Graph const& graph);
@@ -32,7 +30,7 @@ public:
   size_t GetMaxDegree() const;
   size_t GetNumberVetricesDegreeMoreX(size_t x) const;
   std::vector<Vertex> GetVertices() const;
-  std::set<Vertex> GetVerticesDegreeMoreX(size_t x) const;
+  std::vector<Vertex> GetVerticesDegreeMoreX(size_t x) const;
   size_t GetVetricesNum() const;
   bool IsClique(std::set<Vertex>& vertices);
   void PrintAdjacencyList() const;
@@ -109,11 +107,11 @@ size_t Graph::GetNumberVetricesDegreeMoreX(size_t x) const {
 }
 
 
-std::set<Vertex> Graph::GetVerticesDegreeMoreX(size_t x) const {
-  std::set<Vertex> vertices;
+std::vector<Vertex> Graph::GetVerticesDegreeMoreX(size_t x) const {
+  std::vector<Vertex> vertices;
   for (const auto &vertex: vertices_) {
     if (vertex.GetDegree() >= x && vertex.GetNumber() != 0) {
-      vertices.insert(vertex);
+      vertices.push_back(vertex);
     }
   }
   return vertices;
