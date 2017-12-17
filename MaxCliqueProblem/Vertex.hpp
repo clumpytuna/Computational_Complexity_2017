@@ -22,8 +22,7 @@ public:
   
   ~Vertex() {}
   
-  bool operator < (Vertex other) const
-  {
+  bool operator < (Vertex other) const {
     return number_ < other.GetNumber();
   }
 
