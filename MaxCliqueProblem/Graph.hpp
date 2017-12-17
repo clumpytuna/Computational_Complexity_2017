@@ -11,11 +11,13 @@
 
 #include "Edge.hpp"
 #include "Vertex.hpp"
-#include <vector>
 #include <iostream>
+#include <set>
+#include <vector>
+
 
 class Graph {
-  friend class MaxCliqueSolver;
+  
 public:
   Graph(long number_of_vertices);
   Graph(Graph const& graph);
@@ -30,8 +32,9 @@ public:
   size_t GetMaxDegree() const;
   size_t GetNumberVetricesDegreeMoreX(size_t x) const;
   std::vector<Vertex> GetVertices() const;
-  std::vector<Vertex> GetVerticesDegreeMoreX(size_t x) const;
+  std::set<Vertex> GetVerticesDegreeMoreX(size_t x) const;
   size_t GetVetricesNum() const;
+  bool IsClique(std::set<Vertex>& vertices);
   void PrintAdjacencyList() const;
   void PrintVertices() const;
 private:
@@ -106,11 +109,11 @@ size_t Graph::GetNumberVetricesDegreeMoreX(size_t x) const {
 }
 
 
-std::vector<Vertex> Graph::GetVerticesDegreeMoreX(size_t x) const {
-  std::vector<Vertex> vertices;
+std::set<Vertex> Graph::GetVerticesDegreeMoreX(size_t x) const {
+  std::set<Vertex> vertices;
   for (const auto &vertex: vertices_) {
     if (vertex.GetDegree() >= x && vertex.GetNumber() != 0) {
-      vertices.push_back(vertex);
+      vertices.insert(vertex);
     }
   }
   return vertices;
@@ -156,6 +159,21 @@ void Graph::AddEdge(Edge edge) {
     max_degree_ = std::max(vertices_[edge.GetFrom()].GetDegree(),
                           vertices_[edge.GetTo()].GetDegree());
   }
+}
+
+bool Graph::IsClique(std::set<Vertex>& vertices) {
+  for (const auto& vertex: vertices) {
+    auto counter = 0;
+    for (const auto &edge: adjacency_list_[vertex.GetNumber()]) {
+      if (vertices.find(edge.GetFrom()) != vertices.end()) {
+        counter += 1;
+      }
+    }
+    if (counter != vertices.size() - 1) {
+      return false;
+    }
+  }
+  return true;
 }
 
 void Graph::AddEdge(int from, int to, double data) {
