@@ -15,9 +15,11 @@
 #include <iostream>
 
 class Graph {
+  friend class MaxCliqueSolver;
 public:
   Graph(long number_of_vertices);
   Graph(Graph const& graph);
+  Graph & operator=(const Graph &graph);
   ~Graph();
   void AddEdge(int from, int to, double data);
   void AddEdge(Edge edge);
@@ -36,7 +38,7 @@ private:
   std::vector <std::vector <Edge>> adjacency_list_;
   size_t max_degree_ = 0;
   size_t number_of_edges_ = 0;
-  const size_t number_of_vertices_ = 0;
+  size_t number_of_vertices_ = 0;
   std::vector <Vertex> vertices_;
 };
 
@@ -49,13 +51,29 @@ Graph::Graph(long number_of_vertices)
 }
 
 Graph::Graph(Graph const& graph)
-    : number_of_vertices_(graph.GetVetricesNum()),
+    : max_degree_(graph.GetMaxDegree()),
       number_of_edges_(graph.GetEdgesNum()),
-      max_degree_(graph.GetMaxDegree()),
-      adjacency_list_(graph.GetVetricesNum() + 1),
-      vertices_(graph.GetVertices()){
-    std::copy(&(graph.GetAdjList())[0][0], &(graph.GetAdjList())[0][0] +
-              (number_of_vertices_ + 1) * (number_of_vertices_ + 1), &adjacency_list_[0][0]);
+      number_of_vertices_(graph.GetVetricesNum()),
+      vertices_(graph.GetVertices()) {
+  adjacency_list_.clear();
+  for (const auto &edge_vector: graph.GetAdjList()) {
+    adjacency_list_.push_back(edge_vector);
+  }
+}
+
+Graph& Graph::operator=(const Graph & graph) {
+  if (this != &graph) {
+    adjacency_list_.clear();
+    max_degree_ = graph.GetMaxDegree();
+    number_of_edges_ = graph.GetEdgesNum();
+    number_of_vertices_ = graph.GetVetricesNum();
+    vertices_.clear();
+    vertices_ = graph.GetVertices();
+    for (const auto &edge_vector: graph.GetAdjList()) {
+      adjacency_list_.push_back(edge_vector);
+    }
+  }
+  return *this;
 }
 
 Graph::~Graph() {}
