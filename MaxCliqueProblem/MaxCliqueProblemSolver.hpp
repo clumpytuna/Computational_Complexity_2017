@@ -17,29 +17,14 @@
 class MaxCliqueSolver {
 public:
   MaxCliqueSolver(Graph graph): graph_(graph) {}
-  ~MaxCliqueSolver();
+  ~MaxCliqueSolver() {};
   size_t FindClique();
   void SetGraph(Graph graph);
-  bool IsClique(std::set<Vertex> vertices);
   
 private:
   Graph graph_;
   
 };
-bool MaxCliqueSolver::IsClique(std::set<Vertex> vertices) {
-  for (const auto& vertex: vertices) {
-    auto counter = 0;
-    for (const auto &edge: graph_.adjacency_list_[vertex.GetNumber()]) {
-        if (vertices.find(edge.GetFrom()) != vertices.end()) {
-          counter += 1;
-        }
-      }
-    if (counter != vertices.size() - 1) {
-      return false;
-    }
-  }
-  return true;
-}
 
 size_t MaxCliqueSolver::FindClique() {
   auto m = graph_.GetMaxDegree();
@@ -53,8 +38,6 @@ size_t MaxCliqueSolver::FindClique() {
   if (k > mid) {
     
   }
-  
-  
   return 0;
 }
 
