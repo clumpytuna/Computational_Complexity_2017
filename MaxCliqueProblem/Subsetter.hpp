@@ -11,11 +11,12 @@
 
 #include "Graph.hpp"
 #include "Vertex.hpp"
+
 class Subsetter {
 public:
   Subsetter(std::vector<Vertex>& vertices, size_t cardinality)
-  : vertices_(vertices), cardinality_(cardinality),
-  marker(vertices.size(), 0) {
+      : vertices_(vertices), cardinality_(cardinality),
+        marker(vertices.size(), 0), continue_(true) {
   }
   
   bool GetNextSubset(std::set<Vertex>& vertices) {
@@ -64,8 +65,5 @@ public:
   std::vector<size_t> marker;
   std::vector<Vertex> vertices_;
   size_t cardinality_;
-  bool continue_ = true;
-  size_t left_bound = 0;
 };
-
 #endif /* Subsetter_hpp */
