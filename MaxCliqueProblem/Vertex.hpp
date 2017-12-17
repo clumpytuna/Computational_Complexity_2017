@@ -12,20 +12,40 @@
 #include "Edge.hpp"
 class Vertex {
 public:
-  Vertex(size_t number) : number_(number), degree(0) {
-  };
+  Vertex() : degree_(0) {}
+  
+  Vertex(size_t number) : number_(number), degree_(0) {}
+  
+  Vertex(Vertex const& vertex)
+      : number_(vertex.GetNumber()),
+        degree_(vertex.GetDegree()) {}
+  
+  ~Vertex() {}
+  
+  bool operator < (Vertex other) const
+  {
+    return number_ < other.GetNumber();
+  }
+
   void DegreeInc() {
-    degree += 1;
+    degree_ += 1;
   }
+  
   void DegreeDec() {
-    degree -= 1;
+    degree_ -= 1;
   }
+  
   size_t GetDegree() const {
-    return degree;
+    return degree_;
   }
+  
+  size_t GetNumber() const {
+    return number_;
+  }
+  
 private:
+  size_t degree_;
   size_t number_;
-  size_t degree;
 };
 
 #endif /* Vertex_hpp */

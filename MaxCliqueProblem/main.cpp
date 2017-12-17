@@ -19,6 +19,11 @@ size_t MaxCliqueSolver::FindClique(Graph &graph) {
   auto m = graph.GetMaxDegree();
   auto lb = 0;
   auto ub = m;
+  size_t s;
+  std::vector<size_t> clique;
+  std::vector<size_t> iclique;
+  auto mid = (lb + ub) / 2;
+  
   return 0;
 }
 
