@@ -84,7 +84,9 @@ bool MaxCliqueSolver::Select(size_t cliqueSize) {
 
 void MaxCliqueSolver::SetGraph(Graph graph) {
   graph_ = graph;
+  left_border_max_clique_size_ = 0;
+  right_border_max_clique_size_ = graph_.GetMaxDegree();
+  max_clique_size_ = 0;
 }
-
 
 #endif /* MaxCliqueProblemSolver_h */

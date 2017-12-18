@@ -13,13 +13,28 @@
 #include "MaxCliqueProblemSolver.hpp"
 
 int main(int argc, const char * argv[]) {
-  Graph g(3);
-  g.AddEdge(1, 2, 1);
-  g.AddEdge(2, 3, 1);
-  g.AddEdge(3, 1, 1);
+  Graph g(5);
   
-  g.PrintVertices();
-  g.PrintAdjacencyList();
+  g.AddEdge(1, 2, 1);
+  g.AddEdge(1, 3, 1);
+  g.AddEdge(1, 4, 1);
+  g.AddEdge(1, 5, 1);
+
+  
+  g.AddEdge(2, 3, 1);
+  g.AddEdge(2, 4, 1);
+  g.AddEdge(2, 5, 1);
+
+  
+  g.AddEdge(3, 4, 1);
+  g.AddEdge(3, 5, 1);
+
+  
+  g.AddEdge(4, 5, 1);
+
+  
+  //g.PrintVertices();
+  //g.PrintAdjacencyList();
   
   MaxCliqueSolver Solver(g);
   std::cout <<"Размер максимальной клики: " << Solver.FindClique() << " " <<std::endl;

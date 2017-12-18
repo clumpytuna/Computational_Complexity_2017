@@ -32,7 +32,7 @@ public:
   std::vector<Vertex> GetVertices() const;
   std::vector<Vertex> GetVerticesDegreeMoreX(size_t x) const;
   size_t GetVetricesNum() const;
-  bool IsClique(std::set<Vertex>& vertices);
+  bool IsClique(std::set<Vertex>& vertices) const;
   void PrintAdjacencyList() const;
   void PrintVertices() const;
 private:
@@ -79,21 +79,27 @@ Graph& Graph::operator=(const Graph & graph) {
 
 Graph::~Graph() {}
 
+void Graph::AddEdge(Edge edge) {
+  adjacency_list_[edge.GetFrom()].push_back(edge);
+  adjacency_list_[edge.GetTo()].push_back(edge.GetReverse());
+  number_of_edges_ += 2;
+  
+  vertices_[edge.GetFrom()].DegreeInc();
+  vertices_[edge.GetTo()].DegreeInc();
+  
+  if (vertices_[edge.GetFrom()].GetDegree() > max_degree_ ||
+      vertices_[edge.GetTo()].GetDegree() > max_degree_) {
+    max_degree_ = std::max(vertices_[edge.GetFrom()].GetDegree(),
+                           vertices_[edge.GetTo()].GetDegree());
+  }
+}
+
 std::vector<Vertex> Graph::GetVertices() const {
   return vertices_;
 }
 
 std::vector<std::vector<Edge>> Graph::GetAdjList() const {
   return adjacency_list_;
-}
-
-void Graph::PrintVertices() const {
-  for (const auto &vertex: vertices_) {
-    if (vertex.GetNumber() == 0) {
-      continue;
-    }
-    std::cout <<"Vertex number: " << vertex.GetNumber() << " Vertex degree: " << vertex.GetDegree()<< std::endl;
-  }
 }
 
 size_t Graph::GetNumberVetricesDegreeMoreX(size_t x) const {
@@ -120,6 +126,7 @@ std::vector<Vertex> Graph::GetVerticesDegreeMoreX(size_t x) const {
 size_t Graph::GetMaxDegree() const {
   return max_degree_;
 }
+
 size_t Graph::GetDegree(size_t vertex_index) const {
   return vertices_[vertex_index].GetDegree();
 }
@@ -133,33 +140,15 @@ double Graph::GetEdgesLong(int from, int to) const {
   return 0;
 }
 
-void Graph::PrintAdjacencyList() const {
-  for (int i = 1; i < number_of_vertices_ + 1; ++i){
-    for (int j = 0; j <adjacency_list_[i].size(); ++j){
-      std::cout << adjacency_list_[i][j].GetFrom() <<" "<<adjacency_list_[i][j].GetTo() <<" "<<adjacency_list_[i][j].GetData();
-      std::cout << std::endl;
-    }
-  }
-  std::cout << std::endl;
+size_t Graph::GetEdgesNum() const {
+  return number_of_edges_;
 }
 
-
-void Graph::AddEdge(Edge edge) {
-  adjacency_list_[edge.GetFrom()].push_back(edge);
-  adjacency_list_[edge.GetTo()].push_back(edge.GetReverse());
-  number_of_edges_ += 2;
-  
-  vertices_[edge.GetFrom()].DegreeInc();
-  vertices_[edge.GetTo()].DegreeInc();
-  
-  if (vertices_[edge.GetFrom()].GetDegree() > max_degree_ ||
-      vertices_[edge.GetTo()].GetDegree() > max_degree_) {
-    max_degree_ = std::max(vertices_[edge.GetFrom()].GetDegree(),
-                          vertices_[edge.GetTo()].GetDegree());
-  }
+size_t Graph::GetVetricesNum() const {
+  return number_of_vertices_;
 }
 
-bool Graph::IsClique(std::set<Vertex>& vertices) {
+bool Graph::IsClique(std::set<Vertex>& vertices) const {
   for (const auto& vertex: vertices) {
     auto counter = 0;
     for (const auto &edge: adjacency_list_[vertex.GetNumber()]) {
@@ -179,12 +168,22 @@ void Graph::AddEdge(int from, int to, double data) {
   AddEdge(Edge(from, to, data));
 }
 
-size_t Graph::GetVetricesNum() const {
-  return number_of_vertices_;
+void Graph::PrintAdjacencyList() const {
+  for (int i = 1; i < number_of_vertices_ + 1; ++i){
+    for (int j = 0; j <adjacency_list_[i].size(); ++j){
+      std::cout << adjacency_list_[i][j].GetFrom() <<" "<<adjacency_list_[i][j].GetTo() <<" "<<adjacency_list_[i][j].GetData();
+      std::cout << std::endl;
+    }
+  }
+  std::cout << std::endl;
 }
 
-size_t Graph::GetEdgesNum() const {
-  return number_of_edges_;
+void Graph::PrintVertices() const {
+  for (const auto &vertex: vertices_) {
+    if (vertex.GetNumber() == 0) {
+      continue;
+    }
+    std::cout <<"Vertex number: " << vertex.GetNumber() << " Vertex degree: " << vertex.GetDegree()<< std::endl;
+  }
 }
-
 #endif /* Graph_hpp */
