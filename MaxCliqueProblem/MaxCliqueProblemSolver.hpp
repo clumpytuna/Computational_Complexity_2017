@@ -20,7 +20,8 @@ public:
   MaxCliqueSolver(Graph graph)
       : graph_(graph),
         left_border_max_clique_size_(0),
-        right_border_max_clique_size_(graph_.GetMaxDegree()) {}
+        right_border_max_clique_size_(graph_.GetMaxDegree()),
+        max_clique_size_(0){}
   ~MaxCliqueSolver() {};
   
   size_t FindClique();
@@ -62,9 +63,11 @@ size_t MaxCliqueSolver::FindClique() {
   
     if ( left_border_max_clique_size_ <= right_border_max_clique_size_) {
       pretender_size = GetNextPretenderSize();
+    } else {
+      return max_clique_size_;
     }
   }
-  return max_clique_size_;
+
 }
 
 bool MaxCliqueSolver::Select(size_t cliqueSize) {

@@ -163,7 +163,8 @@ bool Graph::IsClique(std::set<Vertex>& vertices) {
   for (const auto& vertex: vertices) {
     auto counter = 0;
     for (const auto &edge: adjacency_list_[vertex.GetNumber()]) {
-      if (vertices.find(edge.GetFrom()) != vertices.end()) {
+      if (vertices.find(edge.GetFrom()) != vertices.end() &&
+          vertices.find(edge.GetTo()) != vertices.end()) {
         counter += 1;
       }
     }
