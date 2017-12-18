@@ -62,6 +62,7 @@ public:
     }
     return true;
   }
+  bool continue_;
   std::vector<size_t> marker;
   std::vector<Vertex> vertices_;
   size_t cardinality_;
