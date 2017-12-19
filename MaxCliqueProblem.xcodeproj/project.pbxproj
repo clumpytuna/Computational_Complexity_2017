@@ -30,6 +30,7 @@
 		9C1E27CB1FE5DE7B00226759 /* Edge.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = Edge.hpp; sourceTree = "<group>"; };
 		9C1E27CC1FE6B8A700226759 /* MaxCliqueProblemSolver.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = MaxCliqueProblemSolver.hpp; sourceTree = "<group>"; };
 		9C1E27CD1FE7336E00226759 /* Subsetter.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = Subsetter.hpp; sourceTree = "<group>"; };
+		9C1E27D01FE8A05C00226759 /* MaximalCliqueProblem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = MaximalCliqueProblem.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +63,7 @@
 		9C1E27BD1FE5DD8100226759 /* MaxCliqueProblem */ = {
 			isa = PBXGroup;
 			children = (
+				9C1E27D01FE8A05C00226759 /* MaximalCliqueProblem.pdf */,
 				9C1E27BE1FE5DD8100226759 /* main.cpp */,
 				9C1E27CD1FE7336E00226759 /* Subsetter.hpp */,
 				9C1E27CC1FE6B8A700226759 /* MaxCliqueProblemSolver.hpp */,
